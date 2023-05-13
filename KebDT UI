@@ -1,0 +1,1153 @@
+local Library = {}
+local tween = game:GetService("TweenService")
+local tweeninfo = TweenInfo.new
+local input = game:GetService("UserInputService")
+local run = game:GetService("RunService")
+local Tabs = {}
+local Buttons = {}
+local function StartLib()
+	local Lib = Instance.new("ScreenGui",game:GetService("Players").LocalPlayer.PlayerGui)
+	Lib.Name = game:GetService("HttpService"):GenerateGUID()
+	Lib.ResetOnSpawn = false
+	Lib.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	local Expand = Instance.new("ImageButton")
+	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+	Expand.Name = "Expand"
+	Expand.Parent = Lib
+	Expand.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Expand.BackgroundTransparency = 1.000
+	Expand.Position = UDim2.new(0.48300001, 0, 2, 0)
+	Expand.Size = UDim2.new(0, 32, 0, 31)
+	Expand.ZIndex = 999999999
+	Expand.Image = "rbxassetid://12072054746"
+	Expand.ImageColor3 = Color3.fromRGB(19, 65, 86)
+	UIAspectRatioConstraint.Parent = Expand
+	local function JXJYYGV_script() 
+		local script = Instance.new('LocalScript', Expand)
+		script.Parent.MouseButton1Click:Connect(function()
+			script.Parent.Parent.MainFrame:TweenPosition(UDim2.new(0.298,0,0.282,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.75)
+			script.Parent:TweenPosition(UDim2.new(0.483,0,-2,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.75)
+		end)
+	end
+	coroutine.wrap(JXJYYGV_script)()
+	local function EWYDDK_script() 
+		local script = Instance.new('LocalScript', Expand)
+		local h = {}
+		local tween = game:GetService("TweenService")
+		local tweeninfo = TweenInfo.new
+		local input = game:GetService("UserInputService")
+		function h:DraggingEnabled(parent)
+			local frame = script.Parent
+			--stolen from kavo that stolen from wally loool
+			parent = parent or frame
+			local dragging = false
+			local dragInput, mousePos, framePos
+			frame.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					dragging = true
+					mousePos = input.Position
+					framePos = parent.Position
+					input.Changed:Connect(function()
+						if input.UserInputState == Enum.UserInputState.End then
+							dragging = false
+						end
+					end)
+				end
+			end)
+			frame.InputChanged:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseMovement then
+					dragInput = input
+				end
+			end)
+			input.InputChanged:Connect(function(input)
+				if input == dragInput and dragging then
+					local delta = input.Position - mousePos
+					parent.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+				end
+			end)
+		end
+		h:DraggingEnabled(script.Parent)
+	end
+	coroutine.wrap(EWYDDK_script)()
+	local MainFrame = Instance.new("TextButton")
+	local UICorner = Instance.new("UICorner")
+	local NameTab = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+	local Frame = Instance.new("Frame")
+	local TextLabel = Instance.new("TextLabel")
+	local Collapse = Instance.new("ImageLabel")
+	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+	local TabsS = Instance.new("ScrollingFrame")
+	local Tab1 = Instance.new("TextButton")
+	local UICorner_3 = Instance.new("UICorner")
+	local Buttons = Instance.new("ScrollingFrame")
+	local Tabs = Instance.new("Folder")
+	local ButtonsTabDecor = Instance.new("Frame")
+	local UICorner_4 = Instance.new("UICorner")
+	local Shadow = Instance.new("Frame")
+	local UICorner_5 = Instance.new("UICorner")
+	MainFrame.Name = "MainFrame"
+	MainFrame.Parent = Lib
+	MainFrame.BackgroundColor3 = Color3.fromRGB(97, 135, 152)
+	MainFrame.Position = UDim2.new(0.492414802, 0, 0.108695701, 0)
+	MainFrame.Size = UDim2.new(0, 201, 0, 377)
+	MainFrame.ZIndex = 999999999
+	MainFrame.AutoButtonColor = false
+	MainFrame.Font = "SourceSans"
+	MainFrame.Text = "UI Library"
+	MainFrame.TextColor3 = Color3.fromRGB(0, 0, 0)
+	MainFrame.TextScaled = true
+	MainFrame.TextSize = 14.000
+	MainFrame.TextTransparency = 0.950
+	MainFrame.TextWrapped = true
+	UICorner.CornerRadius = UDim.new(0, 16)
+	UICorner.Parent = MainFrame
+	NameTab.Name = "NameTab"
+	NameTab.Parent = MainFrame
+	NameTab.BackgroundColor3 = Color3.fromRGB(76, 109, 121)
+	NameTab.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	NameTab.Size = UDim2.new(1, 0, 0.127000004, 0)
+	NameTab.ZIndex = 4
+	UICorner_2.Parent = NameTab
+	Frame.Parent = NameTab
+	Frame.BackgroundColor3 = Color3.fromRGB(76, 109, 121)
+	Frame.BorderSizePixel = 0
+	Frame.Position = UDim2.new(0, 0, 0.481481433, 0)
+	Frame.Size = UDim2.new(1, 0, 0.600000024, 0)
+	TextLabel.Parent = NameTab
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.Position = UDim2.new(0.0281030796, 0, 0.247783691, 0)
+	TextLabel.Size = UDim2.new(0.891586065, 0, 0.752216399, 0)
+	TextLabel.Font = "Jura"
+	TextLabel.Text = game:GetService("HttpService"):GenerateGUID()
+	TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.TextScaled = true
+	TextLabel.TextSize = 14.000
+	TextLabel.TextWrapped = true
+	TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+	Collapse.Name = "Collapse"
+	Collapse.Parent = NameTab
+	Collapse.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Collapse.BackgroundTransparency = 1.000
+	Collapse.Position = UDim2.new(0.922239959, 0, 0.217524201, 0)
+	Collapse.Size = UDim2.new(0.0647309273, 0, 0.658176124, 0)
+	Collapse.Image = "rbxassetid://11622919444"
+	Collapse.ImageColor3 = Color3.fromRGB(24, 75, 75)
+	UIAspectRatioConstraint.Parent = Collapse
+	TabsS.Name = "TabsS"
+	TabsS.Parent = MainFrame
+	TabsS.Active = true
+	TabsS.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	TabsS.BackgroundTransparency = 1.000
+	TabsS.Position = UDim2.new(0.0106383367, 0, 0.15634349, 0)
+	TabsS.Size = UDim2.new(1, 0, 0.0928381979, 0)
+	TabsS.ZIndex = 9999
+	TabsS.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+	TabsS.CanvasSize = UDim2.new(1, 0, 0, 0)
+	TabsS.ScrollBarThickness = 4
+	TabsS.ScrollBarImageTransparency = 1
+	Tab1.Name = "Tab1"
+	Tab1.Parent = TabsS
+	Tab1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Tab1.BackgroundTransparency = 0.900
+	Tab1.Position = UDim2.new(0.0181967318, 0, 0.137931034, 0)
+	Tab1.Size = UDim2.new(0.0177100133, 50, 0.712201536, 0)
+	Tab1.ZIndex = 999999999
+	Tab1.Font = "Jura"
+	Tab1.Text = "Clear"
+	Tab1.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Tab1.TextScaled = true
+	Tab1.TextSize = 14.000
+	Tab1.TextWrapped = true
+	UICorner_3.Parent = Tab1
+	Buttons.Name = "Buttons"
+	Buttons.Parent = MainFrame
+	Buttons.Active = true
+	Buttons.BackgroundColor3 = Color3.fromRGB(14, 159, 175)
+	Buttons.BackgroundTransparency = 1.000
+	Buttons.Position = UDim2.new(0.0539612472, 0, 0.282926053, 0)
+	Buttons.Size = UDim2.new(0.892077506, 0, 0.646315396, 0)
+	Buttons.ZIndex = 99999
+	Buttons.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+	Buttons.CanvasSize = UDim2.new(0, 0, 1, 0)
+	Buttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
+	Tabs.Name = "Tabs"
+	Tabs.Parent = MainFrame
+	ButtonsTabDecor.Name = "ButtonsTabDecor"
+	ButtonsTabDecor.Parent = MainFrame
+	ButtonsTabDecor.BackgroundColor3 = Color3.fromRGB(66, 116, 113)
+	ButtonsTabDecor.Position = UDim2.new(0.0543617085, 0, 0.265999943, 0)
+	ButtonsTabDecor.Size = UDim2.new(0.889872432, 0, 0.66347754, 0)
+	UICorner_4.Parent = ButtonsTabDecor
+	Shadow.Name = "Shadow"
+	Shadow.Parent = MainFrame
+	Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Shadow.BackgroundTransparency = 0.900
+	Shadow.Position = UDim2.new(0.0132978726, 0, 0.15384616, 0)
+	Shadow.Size = UDim2.new(0.96808511, 0, 0.0961538479, 0)
+	UICorner_5.Parent = Shadow
+	local function PPQOLGT_script()
+		local script = Instance.new('LocalScript', Collapse)
+		script.Parent.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				script.Parent.Parent.Parent:TweenPosition(UDim2.new(0.3, 0,1, 0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.75)
+				script.Parent.Parent.Parent.Parent.Expand:TweenPosition(UDim2.new(0.483,0,0.115,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.75)
+			end
+		end)
+	end
+	coroutine.wrap(PPQOLGT_script)()
+	local function EBKRVJU_script()
+		local script = Instance.new('LocalScript', Tab1)
+		script.Parent.MouseButton1Click:Connect(function()
+			for i,v in pairs(script.Parent.Parent.Parent.Buttons:GetChildren()) do
+				v.Parent = script.Parent.Parent.Parent.Tabs
+				for a,b in pairs(v:GetChildren()) do
+					if not b:IsA("IntValue") then
+						b.Visible = false
+					end
+					if b:FindFirstChild("Buttons") then
+						b.Buttons.Visible = false
+					end
+				end
+			end
+			script.Parent.Parent.Parent.Tabs[script.Parent.Name].Parent = script.Parent.Parent.Parent.Buttons
+			for i,v in pairs(script.Parent.Parent.Parent.Buttons[script.Parent.Name]:GetChildren()) do
+				if not v:IsA("IntValue") then
+					v.Visible = true
+				end
+			end
+		end)
+	end
+	coroutine.wrap(EBKRVJU_script)()
+	return Lib, MainFrame
+end
+local Libb, MainFM = StartLib()
+function Library:DraggingEnabled(parent)
+	local frame = MainFM
+	--stolen from kavo that stolen from wally loool
+	parent = frame
+	local dragging = false
+	local dragInput, mousePos, framePos
+	frame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			mousePos = input.Position
+			framePos = parent.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+	frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement then
+			dragInput = input
+		end
+	end)
+	input.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			local delta = input.Position - mousePos
+			parent.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+		end
+	end)
+end
+function Library:NewTab(name)
+	local function CTabb()
+		local Tab1 = Instance.new("Folder")
+		Tab1.Name = "Tab1"
+		local Int = Instance.new("IntValue",Tab1)
+		Int.Name = "Buttons"
+		Int.Value = -1
+		return Tab1
+	end
+	local function gettTab()
+		local Tab1 = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		Tab1.Name = "Tab1"
+		Tab1.Parent = MainFM.TabsS
+		Tab1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Tab1.BackgroundTransparency = 0.900
+		Tab1.Position = UDim2.new(0.0181967318, 0, 0.137931034, 0)
+		Tab1.Size = UDim2.new(0.0177100133, 50, 0.712201536, 0)
+		Tab1.ZIndex = 999999999
+		Tab1.Font = "Jura"
+		Tab1.Text = "Clear"
+		Tab1.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Tab1.TextScaled = true
+		Tab1.TextSize = 14.000
+		Tab1.TextWrapped = true
+		UICorner.Parent = Tab1
+		local function EPTOYSS_script() -- Tab1.LocalScript 
+			local script = Instance.new('LocalScript', Tab1)
+			script.Parent.MouseButton1Click:Connect(function()
+				for i,v in pairs(script.Parent.Parent.Parent.Buttons:GetChildren()) do
+					v.Parent = script.Parent.Parent.Parent.Tabs
+					for a,b in pairs(v:GetChildren()) do
+						if not b:IsA("IntValue") then
+							b.Visible = false
+						end
+						if b:FindFirstChild("Buttons") then
+							b.Buttons.Visible = false
+						end
+					end
+				end
+				script.Parent.Parent.Parent.Tabs[script.Parent.Name].Parent = script.Parent.Parent.Parent.Buttons
+				for i,v in pairs(script.Parent.Parent.Parent.Buttons[script.Parent.Name]:GetChildren()) do
+					if not v:IsA("IntValue") then
+						v.Visible = true
+					end
+				end
+			end)
+		end
+		coroutine.wrap(EPTOYSS_script)()
+		return Tab1
+	end
+	local tabamount = 0
+	for i,v in pairs(MainFM.TabsS:GetChildren()) do
+		tabamount += 1
+	end
+	local tab = gettTab()
+	tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	tab.BackgroundTransparency = 0.9
+	MainFM.TabsS.Tab1.BackgroundColor3 = Color3.fromRGB(255,0,0)
+	MainFM.TabsS.Tab1.BackgroundTransparency = 0.75
+	tab.Parent = MainFM.TabsS
+	tab.Name = name
+	tab.Text = name
+	tab.Position = UDim2.new(tabamount*0.175+0.01,0,0.138,0)
+	local tabk = CTabb()
+	tabk.Parent = MainFM.Tabs
+	tabk.Name = name
+	local Tab = {}
+	local function CTogglee()
+		local ToggleN = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		local State = Instance.new("Frame")
+		local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+		local UICorner_2 = Instance.new("UICorner")
+		local Stroke = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner_3 = Instance.new("UICorner")
+		local Bool = Instance.new("BoolValue")
+		ToggleN.Name = "ToggleN"
+		ToggleN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		ToggleN.Position = UDim2.new(0.0810003504, 0, 0.00999998208, 0)
+		ToggleN.Size = UDim2.new(0.839999974, 0, 0.170000002, 0)
+		ToggleN.AutoButtonColor = false
+		ToggleN.Font = "Cartoon"
+		ToggleN.Text = "Toggle"
+		ToggleN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		ToggleN.TextSize = 14.000
+		UICorner.Parent = ToggleN
+		Bool.Name = "Bool"
+		Bool.Parent = ToggleN
+		State.Name = "State"
+		State.Parent = ToggleN
+		State.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
+		State.BorderSizePixel = 0
+		State.Position = UDim2.new(0.0298350994, 0, 0.264235109, 0)
+		State.Size = UDim2.new(0.0505185202, 0, 0.588352859, 0)
+		UIAspectRatioConstraint.Parent = State
+		UICorner_2.CornerRadius = UDim.new(0, 20)
+		UICorner_2.Parent = State
+		Stroke.Name = "Stroke"
+		Stroke.Parent = ToggleN
+		Stroke.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke.BackgroundTransparency = 1.000
+		Stroke.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke.Parent = Stroke
+		UIStroke.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke.Thickness = 3.000
+		UICorner_3.Parent = Stroke
+		local function FOMN_script() -- ToggleN.ColorRider 
+			local script = Instance.new('LocalScript', ToggleN)
+			local coloradd = 0.1
+			local tweentime = 0.1
+			local TS = game:GetService("TweenService")
+			local red = script.Parent.BackgroundColor.r
+			local green = script.Parent.BackgroundColor.g
+			local blue = script.Parent.BackgroundColor.b
+			local redP = red+coloradd
+			local greenP = green+coloradd
+			local blueP = blue+coloradd
+			local redC = red+coloradd*2
+			local greenC = green+coloradd*2
+			local blueC = blue+coloradd*2
+			script.Parent.MouseEnter:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(redP,greenP,blueP)}):Play()
+			end)
+			script.Parent.MouseLeave:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(red,green,blue)}):Play()
+			end)
+			script.Parent.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(redC,greenC,blueC)}):Play()
+				end
+			end)
+			script.Parent.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(red,green,blue)}):Play()
+				end
+			end)
+		end
+		coroutine.wrap(FOMN_script)()
+		return ToggleN
+	end
+	local function CButton()
+		local ButtonN = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		local ImageLabel = Instance.new("ImageLabel")
+		local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+		local Stroke = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner_2 = Instance.new("UICorner")
+		local Decorat = Instance.new("TextLabel")
+		local UICorner_3 = Instance.new("UICorner")
+		ButtonN.Name = "ButtonN"
+		ButtonN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		ButtonN.Position = UDim2.new(0.0810003281, 0, 0.00999997649, 0)
+		ButtonN.Size = UDim2.new(0.839999974, 0, 0.170000002, 0)
+		ButtonN.Font = "Cartoon"
+		ButtonN.Text = "TextButton"
+		ButtonN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		ButtonN.TextSize = 14.000
+		UICorner.Parent = ButtonN
+		ImageLabel.Parent = ButtonN
+		ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ImageLabel.BackgroundTransparency = 1.000
+		ImageLabel.Position = UDim2.new(0.0134680159, 0, 0.176470593, 0)
+		ImageLabel.Size = UDim2.new(0.0875421092, 0, 0.70588237, 0)
+		ImageLabel.Image = "rbxassetid://12634870288"
+		UIAspectRatioConstraint.Parent = ImageLabel
+		Stroke.Name = "Stroke"
+		Stroke.Parent = ButtonN
+		Stroke.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke.BackgroundTransparency = 1.000
+		Stroke.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke.Parent = Stroke
+		UIStroke.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke.Thickness = 3.000
+		UICorner_2.Parent = Stroke
+		Decorat.Name = "Decorat"
+		Decorat.Parent = ButtonN
+		Decorat.BackgroundColor3 = Color3.fromRGB(116, 116, 116)
+		Decorat.BackgroundTransparency = 0.900
+		Decorat.Position = UDim2.new(-1.18388563e-07, 0, -2.78867105e-07, 0)
+		Decorat.Size = UDim2.new(1, 0, 0.109654933, 20)
+		Decorat.Font = "SourceSans"
+		Decorat.Text = ""
+		Decorat.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Decorat.TextSize = 14.000
+		UICorner_3.Parent = Decorat
+		local function TCUQQO_script() -- ButtonN.ColorRider 
+			local script = Instance.new('LocalScript', ButtonN)
+			local coloradd = 0.1
+			local tweentime = 0.1
+			local TS = game:GetService("TweenService")
+			local red = script.Parent.BackgroundColor.r
+			local green = script.Parent.BackgroundColor.g
+			local blue = script.Parent.BackgroundColor.b
+			local redP = red+coloradd
+			local greenP = green+coloradd
+			local blueP = blue+coloradd
+			local redC = red+coloradd*2
+			local greenC = green+coloradd*2
+			local blueC = blue+coloradd*2
+			script.Parent.MouseEnter:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(redP,greenP,blueP)}):Play()
+			end)
+			script.Parent.MouseLeave:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(red,green,blue)}):Play()
+			end)
+			script.Parent.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(redC,greenC,blueC)}):Play()
+				end
+			end)
+			script.Parent.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(red,green,blue)}):Play()
+				end
+			end)
+		end
+		coroutine.wrap(TCUQQO_script)()
+		return ButtonN
+	end
+	local function CTBA()
+		local TextBoxN = Instance.new("TextButton")
+		local BoxImage = Instance.new("ImageLabel")
+		local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+		local TextLabel = Instance.new("TextLabel")
+		local TextBox = Instance.new("TextBox")
+		local UICorner = Instance.new("UICorner")
+		local UICorner_2 = Instance.new("UICorner")
+		local Go = Instance.new("ImageButton")
+		local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+		local Stroke = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner_3 = Instance.new("UICorner")
+		TextBoxN.Name = "TextBoxN"
+		TextBoxN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		TextBoxN.Position = UDim2.new(0.0810003504, 0, 0.00999998208, 0)
+		TextBoxN.Size = UDim2.new(0.839999974, 0, 0.170000002, 0)
+		TextBoxN.AutoButtonColor = false
+		TextBoxN.Font = "Cartoon"
+		TextBoxN.Text = ""
+		TextBoxN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextBoxN.TextSize = 14.000
+		BoxImage.Name = "BoxImage"
+		BoxImage.Parent = TextBoxN
+		BoxImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		BoxImage.BackgroundTransparency = 1.000
+		BoxImage.Position = UDim2.new(0.0134680038, 0, 0.146716312, 0)
+		BoxImage.Size = UDim2.new(0.0857306123, 0, 0.73563683, 0)
+		BoxImage.Image = "rbxassetid://6796483703"
+		UIAspectRatioConstraint.Parent = BoxImage
+		TextLabel.Parent = TextBoxN
+		TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.BackgroundTransparency = 1.000
+		TextLabel.Position = UDim2.new(0.117845178, 0, 0, 0)
+		TextLabel.Size = UDim2.new(0.47843346, 0, 0.999999881, 0)
+		TextLabel.Font = "SourceSans"
+		TextLabel.Text = "Something really really looooong"
+		TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.TextSize = 14.000
+		TextLabel.TextWrapped = true
+		TextBox.Parent = TextBoxN
+		TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextBox.BackgroundTransparency = 0.900
+		TextBox.Position = UDim2.new(0.600966752, 0, 0.176470548, 0)
+		TextBox.Size = UDim2.new(0.318138152, 0, 0.647058785, 0)
+		TextBox.Font = "SourceSans"
+		TextBox.Text = ""
+		TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextBox.TextScaled = true
+		TextBox.TextSize = 14.000
+		TextBox.TextWrapped = true
+		UICorner.Parent = TextBox
+		UICorner_2.Parent = TextBoxN
+		Go.Name = "Go"
+		Go.Parent = TextBoxN
+		Go.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Go.BackgroundTransparency = 1.000
+		Go.Position = UDim2.new(0.93234235, 0, 0.297544181, 0)
+		Go.Size = UDim2.new(0.0498626195, 0, 0.737854362, 0)
+		Go.Image = "rbxassetid://12622542256"
+		Go.ImageColor3 = Color3.fromRGB(205, 205, 205)
+		UIAspectRatioConstraint_2.Parent = Go
+		Stroke.Name = "Stroke"
+		Stroke.Parent = TextBoxN
+		Stroke.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke.BackgroundTransparency = 1.000
+		Stroke.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke.Parent = Stroke
+		UIStroke.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke.Thickness = 3.000
+		UICorner_3.Parent = Stroke
+		local function NSQJYC_script() -- Go.ColorRider 
+			local script = Instance.new('LocalScript', Go)
+			local coloradd = 0.1
+			local tweentime = 0.2
+			local TS = game:GetService("TweenService")
+			local redP = script.Parent.ImageColor3.R+coloradd
+			local greenP = script.Parent.ImageColor3.G+coloradd
+			local blueP = script.Parent.ImageColor3.B+coloradd
+			local redC = script.Parent.ImageColor3.R+coloradd*2
+			local greenC = script.Parent.ImageColor3.G+coloradd*2
+			local blueC = script.Parent.ImageColor3.B+coloradd*2
+			local red = script.Parent.ImageColor3.R
+			local green = script.Parent.ImageColor3.G
+			local blue = script.Parent.ImageColor3.B
+			script.Parent.MouseEnter:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(redP,greenP,blueP)}):Play()
+			end)
+			script.Parent.MouseLeave:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(red,green,blue)}):Play()
+			end)
+			script.Parent.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(redC,greenC,blueC)}):Play()
+				end
+			end)
+			script.Parent.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(red,green,blue)}):Play()
+				end
+			end)
+		end
+		coroutine.wrap(NSQJYC_script)()
+		return TextBoxN
+	end
+	local function CLLB()
+		local LabelN = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		local TextLabel = Instance.new("TextLabel")
+		local Arrow = Instance.new("ImageLabel")
+		local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+		local Stroke = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner_2 = Instance.new("UICorner")
+		local Decorat = Instance.new("TextLabel")
+		local UICorner_3 = Instance.new("UICorner")
+		LabelN.Name = "LabelN"
+		LabelN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		LabelN.Position = UDim2.new(0.0810000002, 0, 0, 24)
+		LabelN.Size = UDim2.new(0.839999974, 0, 0.170000002, 0)
+		LabelN.AutoButtonColor = false
+		LabelN.Font = "Cartoon"
+		LabelN.Text = "TextLabel"
+		LabelN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		LabelN.TextSize = 14.000
+		UICorner.Parent = LabelN
+		TextLabel.Parent = LabelN
+		TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.BackgroundTransparency = 1.000
+		TextLabel.Size = UDim2.new(1, 0, 1, 0)
+		TextLabel.Font = "SourceSans"
+		TextLabel.Text = "text"
+		TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.TextScaled = true
+		TextLabel.TextSize = 14.000
+		TextLabel.TextTransparency = 1.000
+		TextLabel.TextWrapped = true
+		Arrow.Name = "Arrow"
+		Arrow.Parent = LabelN
+		Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Arrow.BackgroundTransparency = 1.000
+		Arrow.Position = UDim2.new(0.89981854, 0, 0.178526789, 0)
+		Arrow.Rotation = 180.000
+		Arrow.Size = UDim2.new(0.0821128637, 0, 0.64634043, 0)
+		Arrow.Image = "http://www.roblox.com/asset/?id=6439030099"
+		UIAspectRatioConstraint.Parent = Arrow
+		Stroke.Name = "Stroke"
+		Stroke.Parent = LabelN
+		Stroke.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke.BackgroundTransparency = 1.000
+		Stroke.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke.Parent = Stroke
+		UIStroke.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke.Thickness = 3.000
+		UICorner_2.Parent = Stroke
+		Decorat.Name = "Decorat"
+		Decorat.Parent = LabelN
+		Decorat.BackgroundColor3 = Color3.fromRGB(116, 116, 116)
+		Decorat.BackgroundTransparency = 0.900
+		Decorat.Position = UDim2.new(-1.18388563e-07, 0, -2.78867105e-07, 0)
+		Decorat.Size = UDim2.new(1, 0, 0.109654933, 20)
+		Decorat.Font = "SourceSans"
+		Decorat.Text = ""
+		Decorat.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Decorat.TextSize = 14.000
+		UICorner_3.Parent = Decorat
+		local function FLDI_script() -- Decorat.ColorRider 
+			local script = Instance.new('LocalScript', Decorat)
+			local coloradd = 0.1
+			local tweentime = 0.2
+			local TS = game:GetService("TweenService")
+			local redP = script.Parent.BackgroundColor.r+coloradd
+			local greenP = script.Parent.BackgroundColor.g+coloradd
+			local blueP = script.Parent.BackgroundColor.b+coloradd
+			local redC = script.Parent.BackgroundColor.r+coloradd*2
+			local greenC = script.Parent.BackgroundColor.g+coloradd*2
+			local blueC = script.Parent.BackgroundColor.b+coloradd*2
+			local red = script.Parent.BackgroundColor.r
+			local green = script.Parent.BackgroundColor.g
+			local blue = script.Parent.BackgroundColor.b
+			script.Parent.MouseEnter:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(redP,greenP,blueP)}):Play()
+			end)
+			script.Parent.MouseLeave:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(red,green,blue)}):Play()
+			end)
+			script.Parent.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(redC,greenC,blueC)}):Play()
+				end
+			end)
+			script.Parent.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{BackgroundColor3 = Color3.new(red,green,blue)}):Play()
+				end
+			end)
+		end
+		coroutine.wrap(FLDI_script)()
+		return LabelN
+	end
+	local function CSLID()
+		local SliderN = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		local Icon = Instance.new("ImageLabel")
+		local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+		local TextLabel = Instance.new("TextLabel")
+		local Stroke = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner_2 = Instance.new("UICorner")
+		local Slider = Instance.new("Folder")
+		local Back = Instance.new("Frame")
+		local UICorner_3 = Instance.new("UICorner")
+		local Black = Instance.new("Frame")
+		local UICorner_4 = Instance.new("UICorner")
+		local White = Instance.new("Frame")
+		local UICorner_5 = Instance.new("UICorner")
+		local TextLabel_2 = Instance.new("TextLabel")
+		SliderN.Name = "SliderN"
+		SliderN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		SliderN.Position = UDim2.new(0.0810002759, 0, 0.0635579899, 0)
+		SliderN.Size = UDim2.new(0.839999974, 0, 0.170000002, 0)
+		SliderN.AutoButtonColor = false
+		SliderN.Font = "Cartoon"
+		SliderN.Text = ""
+		SliderN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		SliderN.TextSize = 14.000
+		UICorner.Parent = SliderN
+		Icon.Name = "Icon"
+		Icon.Parent = SliderN
+		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Icon.BackgroundTransparency = 1.000
+		Icon.Position = UDim2.new(0.0225023273, 0, 0.120427333, 0)
+		Icon.Rotation = -90.000
+		Icon.Size = UDim2.new(0.123679399, 0, 0.879315615, 0)
+		Icon.Image = "http://www.roblox.com/asset/?id=13284380568"
+		UIAspectRatioConstraint.Parent = Icon
+		TextLabel.Parent = SliderN
+		TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.BackgroundTransparency = 1.000
+		TextLabel.Position = UDim2.new(0.122866757, 0, 0, 0)
+		TextLabel.Size = UDim2.new(0.877133369, 0, 0.506819308, 0)
+		TextLabel.Font = "SourceSans"
+		TextLabel.Text = "absolute slider"
+		TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.TextScaled = true
+		TextLabel.TextSize = 14.000
+		TextLabel.TextWrapped = true
+		Stroke.Name = "Stroke"
+		Stroke.Parent = SliderN
+		Stroke.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke.BackgroundTransparency = 1.000
+		Stroke.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke.Parent = Stroke
+		UIStroke.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke.Thickness = 3.000
+		UICorner_2.Parent = Stroke
+		Slider.Name = "Slider"
+		Slider.Parent = SliderN
+		Back.Name = "Back"
+		Back.Parent = Slider
+		Back.BackgroundColor3 = Color3.fromRGB(72, 157, 166)
+		Back.BackgroundTransparency = 0.500
+		Back.Position = UDim2.new(0.180686519, 0, 0.536384046, 0)
+		Back.Size = UDim2.new(0.790403724, 0, 0.291973084, 0)
+		UICorner_3.Parent = Back
+		Black.Name = "Black"
+		Black.Parent = Slider
+		Black.BackgroundColor3 = Color3.fromRGB(28, 63, 66)
+		Black.BackgroundTransparency = 0.500
+		Black.Position = UDim2.new(0.19595708, 0, 0.626508594, 0)
+		Black.Size = UDim2.new(0.757880092, 0, 0.14154464, 0)
+		UICorner_4.Parent = Black
+		White.Name = "White"
+		White.Parent = Black
+		White.BackgroundColor3 = Color3.fromRGB(70, 159, 165)
+		White.BackgroundTransparency = 0.500
+		White.Size = UDim2.new(0.0500000007, 0, 1, 0)
+		UICorner_5.Parent = White
+		TextLabel_2.Parent = Slider
+		TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel_2.BackgroundTransparency = 1.000
+		TextLabel_2.Position = UDim2.new(0.834771514, 0, 0.171642885, 0)
+		TextLabel_2.Size = UDim2.new(0.11102248, 0, 0.334883809, 0)
+		TextLabel_2.Font = "SourceSans"
+		TextLabel_2.Text = "0/100"
+		TextLabel_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel_2.TextScaled = true
+		TextLabel_2.TextSize = 14.000
+		TextLabel_2.TextWrapped = true
+		return SliderN
+	end
+	local function CDROP()
+		local DropdownN = Instance.new("TextButton")
+		local UICorner = Instance.new("UICorner")
+		local ImageLabel = Instance.new("ImageLabel")
+		local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+		local Stroke = Instance.new("Frame")
+		local UIStroke = Instance.new("UIStroke")
+		local UICorner_2 = Instance.new("UICorner")
+		local TextLabel = Instance.new("TextLabel")
+		local Buttons = Instance.new("ScrollingFrame")
+		local ButtonsTabDecor = Instance.new("Frame")
+		local UICorner_3 = Instance.new("UICorner")
+		local Clones = Instance.new("Frame")
+		local ButtonN = Instance.new("TextButton")
+		local UICorner_4 = Instance.new("UICorner")
+		local ImageLabel_2 = Instance.new("ImageLabel")
+		local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+		local Stroke_2 = Instance.new("Frame")
+		local UIStroke_2 = Instance.new("UIStroke")
+		local UICorner_5 = Instance.new("UICorner")
+		DropdownN.Name = "DropdownN"
+		DropdownN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		DropdownN.Position = UDim2.new(0.0810003504, 0, 0.00999998208, 0)
+		DropdownN.Size = UDim2.new(0.839999974, 0, 0.170000002, 0)
+		DropdownN.AutoButtonColor = false
+		DropdownN.Font = "Cartoon"
+		DropdownN.Text = "TextButton"
+		DropdownN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		DropdownN.TextSize = 14.000
+		DropdownN.TextTransparency = 1.000
+		UICorner.Parent = DropdownN
+		ImageLabel.Parent = DropdownN
+		ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ImageLabel.BackgroundTransparency = 1.000
+		ImageLabel.Position = UDim2.new(0.0130000003, 0, 0, 2)
+		ImageLabel.Size = UDim2.new(0.0875421092, 0, 0.70588237, 0)
+		ImageLabel.Image = "rbxassetid://5279719038"
+		ImageLabel.ImageColor3 = Color3.fromRGB(60, 123, 129)
+		UIAspectRatioConstraint.Parent = ImageLabel
+		Stroke.Name = "Stroke"
+		Stroke.Parent = DropdownN
+		Stroke.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke.BackgroundTransparency = 1.000
+		Stroke.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke.Parent = Stroke
+		UIStroke.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke.Thickness = 3.000
+		UICorner_2.Parent = Stroke
+		TextLabel.Parent = DropdownN
+		TextLabel.BackgroundColor3 = Color3.fromRGB(116, 116, 116)
+		TextLabel.BackgroundTransparency = 0.900
+		TextLabel.Position = UDim2.new(-6.0270537e-08, 0, 0, 0)
+		TextLabel.Size = UDim2.new(1.00000012, 0, 0.0414252244, 20)
+		TextLabel.Font = "SourceSans"
+		TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.TextSize = 14.000
+		Buttons.Name = "Buttons"
+		Buttons.Parent = DropdownN
+		Buttons.Active = true
+		Buttons.BackgroundColor3 = Color3.fromRGB(14, 159, 175)
+		Buttons.BackgroundTransparency = 1.000
+		Buttons.Position = UDim2.new(0.0539612472, 0, 0.282926053, 0)
+		Buttons.Size = UDim2.new(0.892077506, 0, 0.646315396, 0)
+		Buttons.Visible = false
+		Buttons.ZIndex = 99999
+		Buttons.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+		Buttons.CanvasSize = UDim2.new(0, 0, 1, 0)
+		Buttons.AutomaticCanvasSize = Enum.AutomaticSize.Y
+		ButtonsTabDecor.Name = "ButtonsTabDecor"
+		ButtonsTabDecor.Parent = DropdownN
+		ButtonsTabDecor.BackgroundColor3 = Color3.fromRGB(45, 80, 78)
+		ButtonsTabDecor.BackgroundTransparency = 1.000
+		ButtonsTabDecor.Position = UDim2.new(0.0543617085, 0, 0.265999943, 0)
+		ButtonsTabDecor.Size = UDim2.new(0.889872432, 0, 0.66347754, 0)
+		UICorner_3.Parent = ButtonsTabDecor
+		Clones.Name = "Clones"
+		Clones.Parent = DropdownN
+		Clones.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Clones.Size = UDim2.new(0, 1, 0, 1)
+		Clones.Visible = false
+		ButtonN.Name = "ButtonN"
+		ButtonN.Parent = Clones
+		ButtonN.BackgroundColor3 = Color3.fromRGB(28, 57, 63)
+		ButtonN.Position = UDim2.new(0.0810003504, 0, 0.00999998208, 0)
+		ButtonN.Size = UDim2.new(0.800000012, 0, 0, 20)
+		ButtonN.Font = "Cartoon"
+		ButtonN.Text = "TextButton"
+		ButtonN.TextColor3 = Color3.fromRGB(0, 0, 0)
+		ButtonN.TextSize = 14.000
+		UICorner_4.Parent = ButtonN
+		ImageLabel_2.Parent = ButtonN
+		ImageLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		ImageLabel_2.BackgroundTransparency = 1.000
+		ImageLabel_2.Position = UDim2.new(0.0134680159, 0, 0.176470593, 0)
+		ImageLabel_2.Size = UDim2.new(0.0875421092, 0, 0.70588237, 0)
+		ImageLabel_2.Image = "rbxassetid://12634870288"
+		UIAspectRatioConstraint_2.Parent = ImageLabel_2
+		Stroke_2.Name = "Stroke"
+		Stroke_2.Parent = ButtonN
+		Stroke_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		Stroke_2.BackgroundTransparency = 1.000
+		Stroke_2.Position = UDim2.new(0, 0, -0.0243414044, 0)
+		Stroke_2.Size = UDim2.new(1, 0, 1.02434111, 0)
+		UIStroke_2.Parent = Stroke_2
+		UIStroke_2.Color = Color3.fromRGB(41, 125, 134)
+		UIStroke_2.Thickness = 3.000
+		UICorner_5.Parent = Stroke_2
+		local function FNEQ_script() -- ImageLabel.ColorRider 
+			local script = Instance.new('LocalScript', ImageLabel)
+			local coloradd = 0.1
+			local tweentime = 0.2
+			local TS = game:GetService("TweenService")
+			local redP = script.Parent.ImageColor3.R+coloradd
+			local greenP = script.Parent.ImageColor3.G+coloradd
+			local blueP = script.Parent.ImageColor3.B+coloradd
+			local redC = script.Parent.ImageColor3.R+coloradd*2
+			local greenC = script.Parent.ImageColor3.G+coloradd*2
+			local blueC = script.Parent.ImageColor3.B+coloradd*2
+			local red = script.Parent.ImageColor3.R
+			local green = script.Parent.ImageColor3.G
+			local blue = script.Parent.ImageColor3.B
+			script.Parent.MouseEnter:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(redP,greenP,blueP)}):Play()
+			end)
+			script.Parent.MouseLeave:Connect(function()
+				TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(red,green,blue)}):Play()
+			end)
+			script.Parent.InputBegan:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(redC,greenC,blueC)}):Play()
+				end
+			end)
+			script.Parent.InputEnded:Connect(function(input)
+				if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					TS:Create(script.Parent,TweenInfo.new(tweentime),{ImageColor3 = Color3.new(red,green,blue)}):Play()
+				end
+			end)
+		end
+		coroutine.wrap(FNEQ_script)()
+		return DropdownN
+	end
+	function Tab:Update()
+		tabk.Buttons.Value = -1
+		local lastvsize = 0
+		local lastvpos = 0
+		for i,v in pairs(tabk:GetChildren()) do
+			if not v:IsA("IntValue") then
+				tabk.Buttons.Value += 1
+				v.Position = UDim2.new(v.Position.X.Scale,0,lastvpos + lastvsize + 0.05)
+				lastvsize = v.Size.Y.Scale
+				lastvpos = v.Position.Y.Scale
+			end
+		end
+	end
+	function Tab:NewButton(name,callback)
+		callback = callback or function() end
+		tabk.Buttons.Value += 1
+		local button = CButton()
+		button.Parent = tabk
+		button.Name = name
+		button.Text = name
+		Tab:Update()
+		if not MainFM.Buttons:FindFirstChild(tabk.Name) then
+			button.Visible = false
+		end
+		button.MouseButton1Click:Connect(function()
+			callback()
+		end)
+	end
+	function Tab:NewToggle(name,callback)
+		callback = callback or function(options) end
+		tabk.Buttons.Value += 1
+		local button = CTogglee()
+		button.Parent = tabk
+		button.Name = name
+		button.Text = name
+		Tab:Update()
+		if not MainFM.Buttons:FindFirstChild(tabk.Name) then
+			button.Visible = false
+		end
+		button.MouseButton1Click:Connect(function()
+			if button.Bool.Value == true then
+				button.Bool.Value = false
+				button.State.BackgroundColor3 = Color3.fromRGB(255,0,0)
+			else
+				button.Bool.Value = true
+				button.State.BackgroundColor3 = Color3.fromRGB(0,255,0)
+			end
+			return callback(button.Bool.Value)
+		end)
+	end
+	function Tab:NewTextBox(name,callback)
+		callback = callback or function(options) end
+		tabk.Buttons.Value += 1
+		local button = CTBA()
+		button.Parent = tabk
+		button.Name = name
+		button.TextLabel.Text = name
+		Tab:Update()
+		if not MainFM.Buttons:FindFirstChild(tabk.Name) then
+			button.Visible = false
+		end
+		button.Go.MouseButton1Click:Connect(function()
+			return callback(button.TextBox.Text)
+		end)
+	end
+	function Tab:NewLabel(name,text,size,r,g,b)
+		tabk.Buttons.Value += 1
+		local button = CLLB()
+		button.Parent = tabk
+		button.Name = name
+		button.Text = name
+		if text ~= nil then
+			button.TextLabel.Text = text
+		else
+			button.Arrow:Destroy()
+		end
+		if r and g and b then
+			button.BackgroundColor3 = Color3.fromRGB(r,g,b)
+		end
+		local opened = false
+		Tab:Update()
+		if not MainFM.Buttons:FindFirstChild(tabk.Name) then
+			button.Visible = false
+		end
+		if not size then
+			size = 0.5
+		end
+		if text ~= nil then
+			button.MouseButton1Click:Connect(function()
+				if opened == false then
+					opened = true
+					game:GetService("TweenService"):Create(button,TweenInfo.new(0.3),{TextTransparency = 1}):Play()
+					game:GetService("TweenService"):Create(button.Arrow,TweenInfo.new(0.3),{Rotation = 0}):Play()
+					button:TweenSize(UDim2.new(button.Size.X.Scale,0,size,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.75)
+					while task.wait() do
+						Tab:Update()
+						if button.Size == UDim2.new(button.Size.X.Scale,0,size,0) then
+							game:GetService("TweenService"):Create(button.TextLabel,TweenInfo.new(0.3),{TextTransparency = 0}):Play()
+							break
+						end
+					end
+				else
+					opened = false
+					button:TweenSize(UDim2.new(button.Size.X.Scale,0,0.17,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.75)
+					game:GetService("TweenService"):Create(button.TextLabel,TweenInfo.new(0.3),{TextTransparency = 1}):Play()
+					game:GetService("TweenService"):Create(button.Arrow,TweenInfo.new(0.3),{Rotation = 180}):Play()
+					while task.wait() do
+						Tab:Update()
+						if button.Size == UDim2.new(button.Size.X.Scale,0,0.17,0) then
+							game:GetService("TweenService"):Create(button,TweenInfo.new(0.3),{TextTransparency = 0}):Play()
+							break
+						end
+					end
+				end
+			end)
+		end
+	end
+	function Tab:NewSlider(name,min,max,callback)
+		callback = callback or function(options) end
+		tabk.Buttons.Value += 1
+		local button = CSLID()
+		button.Parent = tabk
+		button.Name = name
+		button.TextLabel.Text = name
+		button.Slider.TextLabel.Text = min.."/"..max
+		if not MainFM.Buttons:FindFirstChild(tabk.Name) then
+			button.Visible = false
+		end
+		local function getvalue(value)
+			local mouse = game.Players.LocalPlayer:GetMouse()
+			local slider = button.Slider
+			local percentage = math.clamp((mouse.X-slider.Black.AbsolutePosition.X)/slider.Black.AbsoluteSize.X,0,1)
+			local value = math.floor(((max-min)*(percentage))+min)
+			button.Slider.TextLabel.Text = (value.."/"..max)
+			button.Slider.Black.White:TweenSize(UDim2.new(percentage,0,1,0),Enum.EasingDirection.Out,Enum.EasingStyle.Linear,0.1)
+			return callback(value)
+		end
+		Tab:Update()
+		local dragging = false
+		button.Slider.Back.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				dragging = true
+				while task.wait() do
+					if dragging then
+						local value = getvalue()
+					else
+						break
+					end
+				end
+			end
+		end)
+		button.Slider.Back.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				dragging = false
+			end
+		end)
+	end
+	function Tab:NewDropdown(name)
+		local opened = false
+		tabk.Buttons.Value += 1
+		local button = CDROP()
+		button.Parent = tabk
+		button.Name = name
+		button.TextLabel.Text = name
+		if button.Buttons.Visible == false then
+			button.Visible = false
+		end
+		if not MainFM.Buttons:FindFirstChild(tabk.Name) then
+			button.Visible = false
+		end
+		Tab:Update()
+		button.ImageLabel.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				if opened then
+					button.Buttons.Visible = false
+					game:GetService("TweenService"):Create(button.ButtonsTabDecor,TweenInfo.new(0.5),{BackgroundTransparency = 1}):Play()
+					button:TweenSize(UDim2.new(0.84,0,0.17,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.5)
+					for i= 1,50 do
+						task.wait(0.01)
+						Tab:Update()
+					end
+					game:GetService("TweenService"):Create(button.ImageLabel,TweenInfo.new(0.3,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),{Rotation = 0}):Play()
+					opened = false
+				else
+					button:TweenSize(UDim2.new(0.84,0,1,0),Enum.EasingDirection.Out,Enum.EasingStyle.Bounce,0.5)
+					game:GetService("TweenService"):Create(button.ImageLabel,TweenInfo.new(0.3,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),{Rotation = 180}):Play()
+					game:GetService("TweenService"):Create(button.ButtonsTabDecor,TweenInfo.new(0.5),{BackgroundTransparency = 0}):Play()
+					for i= 1,50 do
+						task.wait(0.01)
+						Tab:Update()
+					end
+					button.Buttons.Visible = true
+					opened = true
+				end
+			end
+		end)
+		local Drop = {
+			buttons = -1,
+		}
+		local dropdown = button
+		function Drop:Update()
+			for i,v in pairs(dropdown.Buttons:GetChildren()) do
+				Drop.buttons = -1
+				local lastvsize = 0
+				local lastvpos = 0
+				for i,v in pairs(dropdown.Buttons:GetChildren()) do
+					if not v:IsA("IntValue") then
+						Drop.buttons += 1
+						v.Position = UDim2.new(v.Position.X.Scale,0,lastvpos + lastvsize + 0.15)
+						lastvsize = v.Size.Y.Scale
+						lastvpos = v.Position.Y.Scale
+					end
+				end
+			end
+		end
+		function Drop:InsertButton(name,callback)
+			local button = dropdown.Clones.ButtonN:Clone()
+			button.Parent = dropdown.Buttons
+			button.Name = name
+			button.Text = name
+			Drop:Update()
+			button.MouseButton1Click:Connect(function()
+				callback()
+			end)
+		end
+		return Drop
+	end
+	return Tab
+end
+function Library:ChangeSize(x,y)
+	MainFM.Size = UDim2.new(0,x,0,y)
+end
+function Library:ChangeName(Name)
+	MainFM.NameTab.TextLabel.Text = Name
+end
+Library:ChangeSize(427,286)--not recommended. Makes UI worse(Decoration).Basic = 427,286
+Library:DraggingEnabled(Libb)
+return Library
