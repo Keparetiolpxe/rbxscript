@@ -189,8 +189,4 @@ function Library:Key(key,script,link,desc)
 		LandedKS:Destroy()
 	end
 end
-local function got()
-	print("Thankssssssssssss")
-	Library:Destroy()
-end
-Library:Key("kiy",got,"linkee","hi")
+return Library
