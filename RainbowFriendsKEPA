@@ -1,12 +1,260 @@
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.2.8) ~  Much Love, Ferib 
+local KS = loadstring(game:HttpGet("https://raw.githubusercontent.com/Keparetiolpxe/rbxscript/main/LandedKeySystem"))()
+local function s()
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("RainbowFriends v1.2 KEPA","Ocean")
+    local Tab1 = Window:NewTab("Chapter 2")
+    local S1 = Tab1:NewSection("Complete Section")
+    local lastLight = {}
+    local Lightning = game:GetService("Lighting")
+    local function updateLight()
+        lastLight = {
+            ["Brightness"] = Lightning.Brightness,
+            ["ClockTime"] = Lightning.ClockTime,
+            ["FogEnd"] = Lightning.FogEnd,
+            ["GlobalShadows"] = Lightning.GlobalShadows,
+            ["OutdoorAmbient"] = Lightning.OutdoorAmbient
+        }
+    end
+    local function espStart()
+        for i,v in pairs(workspace:GetChildren()) do
+            if v.Name == "LightBulb" or v.Name == "GasCanister" or v.Name == "CakeMix" and v:FindFirstChild("TouchTrigger") and not v:FindFirstChild("hlpt") then
+                local hl = Instance.new("Highlight",v)
+                hl.Name = "hlpt"
+                hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                hl.Enabled = true
+            end
+        end
+        for i,v in pairs(workspace.ignore:GetChildren()) do
+            if v.Name == "Looky" and v:FindFirstChild("collision") and game.Players.LocalPlayer.Character ~= nil then
+                local hl = Instance.new("Highlight",v)
+                hl.Name = "hlpt"
+                hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                hl.Enabled = true
+            end
+        end
+    end
+    local function espEnd()
+        for i,v in pairs(workspace:GetChildren()) do
+            if v.Name == "LightBulb" or v.Name == "GasCanister" or v.Name == "CakeMix" and v:FindFirstChild("hlpt") then
+                v.hlpt:Remove()
+            end
+        end
+        for i,v in pairs(workspace.ignore:GetChildren()) do
+            if v.Name == "Looky" and v:FindFirstChild("collision") then
+                v.hlpt:Remove()
+            end
+        end
+    end
+    local function monespS()
+        for i,v in pairs(workspace.Monsters:GetChildren()) do
+            if not v:FindFirstChild("hlpt") then
+                local hl = Instance.new("Highlight",v)
+                hl.Name = "hlpt"
+                hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                hl.Enabled = true
+                hl.Adornee = v
+                hl.OutlineColor = Color3.fromRGB(255,0,0)
+                hl.FillColor = Color3.fromRGB(255,255,255)
+                hl.FillTransparency = 0.1
+            end
+        end
+    end
+    local function monespE()
+        for i,v in pairs(workspace.Monsters:GetChildren()) do
+            if v:FindFirstChild("hlpt") then
+                v.hlpt:Destroy()
+            end
+        end
+    end
+    local nz = (0.00000001)
+    updateLight()
+    S1:NewToggle("FullBright","Light everywhere",function(b)
+        if b == true then
+            updateLight()
+            Lightning.Brightness = 2
+            Lightning.ClockTime = 14
+            Lightning.FogEnd = 100000
+            Lightning.GlobalShadows = false
+            Lightning.OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+        else
+            Lightning.Brightness = lastLight["Brightness"]
+            Lightning.ClockTime = lastLight["ClockTime"]
+            Lightning.FogEnd = lastLight["FogEnd"]
+            Lightning.GlobalShadows = lastLight["GlobalShadows"]
+            Lightning.OutdoorAmbient = lastLight["OutdoorAmbient"]
+        end
+    end)
+    local lastpos = CFrame.new(10,136,0,1,0,0,0,1,0,0,0,1)
+    local autoreturn = false
+    local autoskip = false
+    local autowin = false
+    local debounce = true
+    local espitems = false
+    local espmonsters = false
+    local infjump = false
+    local jumpenabled = false
+    local jp = 50
+    local wsr = 16
+    local wsrg = false
+    local utoc = false
+    local function firetouch(part)
+        if game.Players.LocalPlayer.Character then return end
+        part.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        if utoc then
+            local ff = game.Players.LocalPlayer.Character.ChildAdded:Connect(function(t)
+                if t:IsA("Tool") then
+                    task.wait()
+                    game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                    ff:Disconnect()
+                end
+            end)
+        end
+    end
+    local function returnitems(vv)
+        pcall(function()
+            if workspace.GroupBuildStructures:FindFirstChildWhichIsA("Model") then
+                path = workspace.GroupBuildStructures:FindFirstChildWhichIsA("Model").Trigger
+                lap = path.CFrame
+                firetouch(path)
+                task.wait()
+                path.CFrame = lap
+            else
+                path = workspace.Map_C2.LookyPen.LookyPenTrigger
+                lap = path.CFrame
+                firetouch(path)
+                task.wait(.1)
+                path.CFrame = lap
+            end
+        end)
+    end
+    local kvu2 = string.reverse("90II-")
+    local function complete()
+        pcall(function()
+            if debounce then
+                debounce = false
+                for i,v in pairs(workspace:GetChildren()) do
+                    if v.Name == "LightBulb" or v.Name == "GasCanister" or v.Name == "CakeMix" and v:FindFirstChild("TouchTrigger") and game.Players.LocalPlayer.Character ~= nil then
+                        firetouch(v.TouchTrigger)
+                        if autoreturn then
+                            task.wait()
+                            returnitems()
+                        end
+                    end
+                end
+                for i,v in pairs(workspace.ignore:GetChildren()) do
+                    if v.Name == "Looky" and v:FindFirstChild("collision") and game.Players.LocalPlayer.Character ~= nil then
+                        firetouch(v.collision)
+                        returnitems()
+                        task.wait()
+                        if autoreturn then
+                            task.wait()
+                            returnitems()
+                        end
+                    end
+                end
+                if autoreturn then
+                    task.wait()
+                    returnitems()
+                end
+                debounce = true
+            end
+        end)
+    end
+    game:GetService("RunService").Heartbeat:Connect(function()
+        pcall(function()
+            if autoskip then
+                game:GetService("ReplicatedStorage").modules.GameHandler_cl.VoteSkip_cl.Network.VotedYes:FireServer()
+            end
+            if autowin then
+                pcall(function()
+                    complete()
+                end)
+            end
+            if espitems then
+                espStart()
+            end
+            if espmonsters then 
+                monespS()
+            end
+        end)
+        if wsrg and game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character.WalkSpeed = wsr
+        end
+    end)
+    game:GetService("UserInputService").InputBegan:Connect(function(i)
+        if i.KeyCode == Enum.KeyCode.Space then
+            if jumpenabled then
+                game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+                game.Players.LocalPlayer.Character.Humanoid.JumpPower = jp
+            end
+            if infjump and game.Players.LocalPlayer.Character then
+                game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+            end
+        end
+    end)
+    local thing = "Head"
+    S1:NewButton("Collect Items(1-4 task)","",function()
+        complete()
+    end)
+    S1:NewToggle("Unequip Tools on Collect","Not working on Lookies ofc",function(b)
+        utoc = b
+    end)
+    S1:NewToggle("Return items when collected","lookies will be auto",function(bool)
+        autoreturn = bool
+    end)
+    local kvv5 = string.reverse("09IO")
+    S1:NewButton("Return Items","",function()
+        if game.Players.LocalPlayer.Character then
+            returnitems(1)
+        end
+    end)
+    S1:NewToggle("AutoSkip","",function(b)
+        autoskip = b
+    end)
+    S1:NewToggle("AutoComplete","",function(b)
+        autowin = b
+    end)
+    local lu12 = string.reverse("-WOBNAIR-")
+    S1:NewToggle("Esp Items","",function(b)
+        espitems = b
+        if b == false then
+            espEnd()
+        end
+    end)
+    local kvv3 = "A48J-"
+    S1:NewToggle("Esp Monsters","",function(b)
+        espmonsters = b
+        if b == false then
+            monespE()
+        end
+    end)
+    S1:NewToggle("Enable Jump","",function(b)
+        jumpenabled = b
+        if not b then
+            game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = jp
+        end
+    end)
+    local kadd = "friends"
+    S1:NewToggle("Infinite Jump","jump jump",function(b)
+        infjump = b
+    end)
+    S1:NewSlider("Speed hack","",100,1,function(v)
+        wsr = v
+    end)
+    S1:NewToggle("Set Speed","",function(b)
+        wsrg = b
+    end)
+    S1:NewSlider("JumpPower","",100,1,function(v)
+        jp = v
+    end)
+    local kvv1 = "Key-"
+    local keyy = kvv1..kvv3..kvv5..kvu2..lu12..kadd
+    S1:NewButton("Win last run","Cyan",function()
+        if game.Players.LocalPlayer.Character then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1260,-171,530,1,0,0,0,1,0,0,0,1)
+        end
+    end)
+end
 
-]]--
-
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v10,v11)local v12={};for v50=1, #v10 do v6(v12,v0(v4(v1(v2(v10,v50,v50 + 1 )),v1(v2(v11,1 + ((v50-1)% #v11) ,1 + ((v50-1)% #v11) + 1 )))%256 ));end return v5(v12);end local v8=loadstring(game:HttpGet("https://raw.githubusercontent.com/Keparetiolpxe/rbxscript/main/LandedKeySystem"))();local function v9()local v13=0 -0 ;local v14;local v15;local v16;local v17;local v18;local v19;local v20;local v21;local v22;local v23;local v24;local v25;local v26;local v27;local v28;local v29;local v30;local v31;local v32;local v33;local v34;local v35;local v36;local v37;local v38;local v39;local v40;local v41;local v42;local v43;local v44;local v45;local v46;local v47;local v48;local v49;while true do if (v13==2) then local v51=505 -(351 + 154) ;while true do if (v51==(1577 -(1281 + 293))) then v13=7 -4 ;break;end if (v51==(0 -0)) then v23=nil;function v23()for v78,v79 in pairs(workspace.Monsters:GetChildren()) do if  not v79:FindFirstChild(v7("\3\222\246\37","\107\178\134\81\210\198\158")) then local v97=1559 -(1381 + 178) ;local v98;while true do if (2==v97) then local v123=1933 -(565 + 1368) ;while true do if ((3 -2)==v123) then v97=1664 -(1477 + 184) ;break;end if (v123==0) then v98.Adornee=v79;v98.OutlineColor=Color3.fromRGB(255,0,0 -0 );v123=1 + 0 ;end end end if ((1 + 0)==v97) then v98.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop;v98.Enabled=true;v97=858 -(564 + 292) ;end if (v97==(0 -0)) then v98=Instance.new(v7("\130\49\9\138\202\163\63\6\150","\202\88\110\226\166"),v79);v98.Name=v7("\194\207\31\150","\170\163\111\226\151");v97=2 -1 ;end if (v97==(3 + 0)) then v98.FillColor=Color3.fromRGB(559 -(244 + 60) ,436 -181 ,1411 -(1074 + 82) );v98.FillTransparency=0.1 + 0 ;break;end end end end end v51=477 -(41 + 435) ;end if (v51==(1786 -(214 + 1570))) then v25=1001.00000001 -(938 + 63) ;v20();v51=3 + 0 ;end if ((1126 -(936 + 189))==v51) then v24=nil;function v24()for v80,v81 in pairs(workspace.Monsters:GetChildren()) do if v81:FindFirstChild(v7("\33\29\32\166","\73\113\80\210\88\46\87")) then v81.hlpt:Destroy();end end end v51=1 + 1 ;end end end if ((1617 -(1565 + 48))==v13) then v31=false;v32=false;v33=false;v34=false;v35=31 + 19 ;v36=1154 -(782 + 356) ;v13=272 -(176 + 91) ;end if (v13==(13 -8)) then local v52=0 -0 ;while true do if ((1092 -(975 + 117))==v52) then v37=false;v38=false;v52=1876 -(157 + 1718) ;end if (v52==(2 + 0)) then v40=nil;function v40(v73)pcall(function()if workspace.GroupBuildStructures:FindFirstChildWhichIsA(v7("\30\162\124\188\140","\83\205\24\217\224")) then local v99=0 -0 ;local v100;while true do if ((0 -0)==v99) then v100=1018 -(697 + 321) ;while true do if (v100==(2 -1)) then v39(path);task.wait();v100=3 -1 ;end if (v100==(0 -0)) then local v143=0;local v144;while true do if (v143==(0 + 0)) then v144=0 + 0 ;while true do if (v144==(3 -2)) then v100=1 -0 ;break;end if (v144==(0 -0)) then path=workspace.GroupBuildStructures:FindFirstChildWhichIsA(v7("\16\233\193\200\49","\93\134\165\173")).Trigger;lap=path.CFrame;v144=1228 -(322 + 905) ;end end break;end end end if (v100==(1471 -(1269 + 200))) then path.CFrame=lap;break;end end break;end end else path=workspace.Map_C2.LookyPen.LookyPenTrigger;lap=path.CFrame;v39(path);task.wait(0.1 -0 );path.CFrame=lap;end end);end v52=614 -(602 + 9) ;end if (v52==(1192 -(449 + 740))) then v13=878 -(826 + 46) ;break;end if ((827 -(802 + 24))==v52) then v39=nil;function v39(v74)local v75=947 -(245 + 702) ;while true do if (v75==0) then local v103=0 -0 ;while true do if (v103==(0 -0)) then if game.Players.LocalPlayer.Character then return;end v74.CFrame=game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame;v103=1 + 0 ;end if (v103==(1899 -(260 + 1638))) then v75=441 -(382 + 58) ;break;end end end if (v75==(3 -2)) then if v38 then local v112=game.Players.LocalPlayer.Character.ChildAdded:Connect(function(v132)if v132:IsA(v7("\48\72\195\57","\100\39\172\85\188")) then local v139=0 + 0 ;while true do if (v139==(0 + 0)) then task.wait();game.Players.LocalPlayer.Character.Humanoid:UnequipTools();v139=3 -2 ;end if (v139==(1 + 0)) then ff:Disconnect();break;end end end end);end break;end end end v52=1 + 1 ;end end end if (v13==(1 -0)) then v20=nil;function v20()v18={[v7("\218\84\212\49\244\84\118\224\235\85","\152\38\189\86\156\32\24\133")]=v19.Brightness,[v7("\101\240\88\164\77\200\94\170\67","\38\156\55\199")]=v19.ClockTime,[v7("\101\167\122\89\38\23","\35\200\29\28\72\115\20\154")]=v19.FogEnd,[v7("\19\21\176\211\222\129\31\60\24\187\222\200\158","\84\121\223\177\191\237\76")]=v19.GlobalShadows,[v7("\238\174\66\205\175\53\66\17\204\185\95\204\174\46","\161\219\54\169\192\90\48\80")]=v19.OutdoorAmbient};end v21=nil;function v21()local v56=0 -0 ;while true do if (v56==(1205 -(902 + 303))) then for v82,v83 in pairs(workspace:GetChildren()) do if ((v83.Name==v7("\9\64\69\8\49\107\87\12\39","\69\41\34\96")) or (v83.Name==v7("\12\189\208\244\11\12\34\175\215\210\24","\75\220\163\183\106\98")) or ((v83.Name==v7("\250\3\177\142\26\208\26","\185\98\218\235\87")) and v83:FindFirstChild(v7("\158\196\41\36\238\234\184\194\59\32\227\204","\202\171\92\71\134\190")) and  not v83:FindFirstChild(v7("\128\37\209\56","\232\73\161\76")))) then local v104=Instance.new(v7("\54\178\222\74\81\23\188\209\86","\126\219\185\34\61"),v83);v104.Name=v7("\239\0\222\74","\135\108\174\62\18\30\23\147");v104.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop;v104.Enabled=true;end end for v84,v85 in pairs(workspace.ignore:GetChildren()) do if ((v85.Name==v7("\235\185\230\33\210","\167\214\137\74\171\120\206\83")) and v85:FindFirstChild(v7("\164\132\252\62\84\235\174\132\254","\199\235\144\82\61\152")) and (game.Players.LocalPlayer.Character~=nil)) then local v109=0 -0 ;local v110;while true do if (v109==(0 -0)) then v110=Instance.new(v7("\3\14\17\177\39\14\17\177\63","\75\103\118\217"),v85);v110.Name=v7("\22\203\68\100","\126\167\52\16\116\217");v109=1 + 0 ;end if ((1620 -(1427 + 192))==v109) then v110.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop;v110.Enabled=true;break;end end end end break;end end end v22=nil;function v22()local v57=0;while true do if (v57==(1690 -(1121 + 569))) then for v86,v87 in pairs(workspace:GetChildren()) do if ((v87.Name==v7("\208\193\41\40\148\150\12\240\202","\156\168\78\64\224\212\121")) or (v87.Name==v7("\233\6\253\134\207\9\231\182\218\2\252","\174\103\142\197")) or ((v87.Name==v7("\219\87\35\90\21\44\70","\152\54\72\63\88\69\62")) and v87:FindFirstChild(v7("\84\216\212\250","\60\180\164\142")))) then v87.hlpt:Remove();end end for v88,v89 in pairs(workspace.ignore:GetChildren()) do if ((v89.Name==v7("\62\87\81\14\48","\114\56\62\101\73\71\141")) and v89:FindFirstChild(v7("\199\183\229\215\205\171\224\212\202","\164\216\137\187"))) then v89.hlpt:Remove();end end break;end end end v13=216 -(22 + 192) ;end if (v13==(690 -(483 + 200))) then v17:NewButton(v7("\135\65\167\220\119\44\215\13\141\90\174\221\97\103\146\0\240\14\191\209\97\36\138","\196\46\203\176\18\79\163\45"),"",function()v42();end);v17:NewToggle(v7("\218\182\39\111\11\45\235\175\140\45\113\18\55\187\224\182\98\93\17\40\247\234\187\54","\143\216\66\30\126\68\155"),v7("\207\165\220\77\220\202\177\220\232\164\207\77\196\203\227\251\238\165\195\4\206\214\227\216\231\169","\129\202\168\109\171\165\195\183"),function(v58)v38=v58;end);v17:NewToggle(v7("\212\39\76\34\202\208\84\239\54\93\58\203\158\3\238\39\86\119\219\209\24\234\39\91\35\221\218","\134\66\56\87\184\190\116"),v7("\57\51\62\2\178\28\248\97\34\53\61\5\251\27\238\97\52\41\37\6","\85\92\81\105\219\121\139\65"),function(v59)v27=v59;end);v44=string.reverse(v7("\143\164\154\127","\191\157\211\48\37\28"));v17:NewButton(v7("\8\218\11\225\14\52\159\54\224\25\55\204","\90\191\127\148\124"),"",function()if game.Players.LocalPlayer.Character then v40(1464 -(1404 + 59) );end end);v17:NewToggle(v7("\54\109\147\33\36\115\142\62","\119\24\231\78"),"",function(v60)v28=v60;end);v13=4 + 4 ;end if ((24 -15)==v13) then v47=v7("\70\168\93\179\78\190\71","\32\218\52\214");v17:NewToggle(v7("\115\64\17\56\166\248\164\64\26\100\2\60\184","\58\46\119\81\200\145\208\37"),v7("\60\62\129\32\236\163\168\59\59","\86\75\236\80\204\201\221"),function(v61)v33=v61;end);v17:NewSlider(v7("\184\98\68\114\129\190\131\115\66\124","\235\18\33\23\229\158"),"",100,1 -0 ,function(v62)v36=v62;end);v17:NewToggle(v7("\136\85\174\129\136\64\191\196\191","\219\48\218\161"),"",function(v63)v37=v63;end);v17:NewSlider(v7("\202\241\124\108\121\212\88\229\246","\128\132\17\28\41\187\47"),"",865 -(468 + 297) ,563 -(334 + 228) ,function(v64)v35=v64;end);v48=v7("\118\4\43\75","\61\97\82\102\90");v13=33 -23 ;end if (v13==(8 + 0)) then v17:NewToggle(v7("\48\151\57\170\105\211\77\1\142\40\177\79","\113\226\77\197\42\188\32"),"",function(v65)v29=v65;end);v45=string.reverse(v7("\248\13\57\214\155\27\63\198\248","\213\90\118\148"));v17:NewToggle(v7("\104\72\62\244\127\89\94\35\167","\45\59\78\212\54"),"",function(v66)local v67=0 -0 ;while true do if (v67==(0 -0)) then v31=v66;if (v66==false) then v22();end break;end end end);v46=v7("\209\68\14\169\198","\144\112\54\227\235\230\78\205");v17:NewToggle(v7("\126\160\56\79\209\223\85\160\60\10\238\195","\59\211\72\111\156\176"),"",function(v68)v32=v68;if (v68==false) then v24();end end);v17:NewToggle(v7("\8\64\134\225\33\75\199\201\56\67\151","\77\46\231\131"),"",function(v69)v34=v69;if  not v69 then local v70=551 -(83 + 468) ;while true do if (v70==(0 -0)) then game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false);game.Players.LocalPlayer.Character.Humanoid.JumpPower=v35;break;end end end end);v13=41 -32 ;end if (v13==(0 + 0)) then local v53=236 -(141 + 95) ;while true do if (v53==(328 -(45 + 280))) then v13=1 + 0 ;break;end if (v53==(1 + 0)) then v16=v15:NewTab(v7("\101\60\182\89\2\185\52\6\102","\38\84\215\41\118\220\70"));v17=v16:NewSection(v7("\221\95\27\50\30\251\68\19\98\33\251\83\2\43\29\240","\158\48\118\66\114"));v53=4 -2 ;end if (v53==(0 -0)) then v14=loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))();v15=v14.CreateLib(v7("\44\208\202\213\39\233\172\225\12\216\198\213\33\245\251\209\79\159\145\155\14\195\139\230","\126\177\163\187\69\134\219\167"),v7("\211\32\200\43\203","\156\67\173\74\165"));v53=1 + 0 ;end if ((5 -3)==v53) then v18={};v19=game:GetService(v7("\215\162\35\24\34\122\171\252","\155\203\68\112\86\19\197"));v53=3 + 0 ;end end end if (v13==(6 + 4)) then v49=v48   .. v46   .. v44   .. v41   .. v45   .. v47 ;v17:NewButton(v7("\62\165\32\235\71\198\68\10\73\190\59\165","\105\204\78\203\43\167\55\126"),v7("\114\188\171\45","\49\197\202\67\126\115\100\167"),function()if game.Players.LocalPlayer.Character then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=CFrame.new(1774 -514 , -(68 + 103),313 + 217 ,1,163 -(92 + 71) ,0,0 + 0 ,1 -0 ,765 -(574 + 191) ,0 + 0 ,0 -0 ,1 + 0 );end end);break;end if ((2 + 1)==v13) then local v54=849 -(254 + 595) ;while true do if (v54==(128 -(55 + 71))) then v29=false;v30=true;v54=3 -0 ;end if (v54==(1790 -(573 + 1217))) then v17:NewToggle(v7("\193\148\32\193\48\245\136\43\197\6","\135\225\76\173\114"),v7("\139\19\234\176\164\236\184\177\31\255\161\167\164\184\181\31","\199\122\141\216\208\204\221"),function(v76)if (v76==true) then local v91=0 -0 ;local v92;local v93;while true do if ((237 -(46 + 190))==v91) then while true do if (v92==(0 + 0)) then v93=0 -0 ;while true do if (v93==(939 -(714 + 225))) then v20();v19.Brightness=5 -3 ;v93=1 -0 ;end if (v93==(1 + 0)) then local v152=0 -0 ;while true do if (v152==(664 -(174 + 489))) then v93=808 -(118 + 688) ;break;end if (v152==(48 -(25 + 23))) then v19.ClockTime=3 + 11 ;v19.FogEnd=101886 -(927 + 959) ;v152=3 -2 ;end end end if (v93==(734 -(16 + 716))) then v19.GlobalShadows=false;v19.OutdoorAmbient=Color3.fromRGB(1290 -(171 + 991) ,128,527 -399 );break;end end break;end end break;end if (v91==(0 -0)) then v92=0 -0 ;v93=nil;v91=1 + 0 ;end end else local v94=0 -0 ;while true do if ((99 -(11 + 86))==v94) then v19.OutdoorAmbient=v18[v7("\224\185\189\21\75\185\249\238\161\171\24\65\184\255","\175\204\201\113\36\214\139")];break;end if (v94==(2 -1)) then v19.FogEnd=v18[v7("\160\219\24\34\221\178","\230\180\127\103\179\214\28")];v19.GlobalShadows=v18[v7("\199\128\10\93\71\232\114\232\141\1\80\81\247","\128\236\101\63\38\132\33")];v94=6 -4 ;end if (v94==(285 -(175 + 110))) then v19.Brightness=v18[v7("\212\191\212\23\248\108\248\168\206\3","\150\205\189\112\144\24")];v19.ClockTime=v18[v7("\51\41\139\188\71\48\129\28\21","\112\69\228\223\44\100\232\113")];v94=2 -1 ;end end end end);v26=CFrame.new(49 -39 ,34 + 102 ,1796 -(503 + 1293) ,1 + 0 ,0 -0 ,0 + 0 ,0 -0 ,1 + 0 ,771 -(326 + 445) ,1061 -(810 + 251) ,0,1 + 0 );v54=1 + 0 ;end if (v54==(3 + 0)) then v13=537 -(43 + 490) ;break;end if (v54==(734 -(711 + 22))) then v27=false;v28=false;v54=7 -5 ;end end end if (v13==(865 -(240 + 619))) then local v55=0;while true do if (v55==(2 -1)) then local v72=0 + 0 ;while true do if ((1 -0)==v72) then v55=2;break;end if (v72==(0 + 0)) then function v42()pcall(function()if v30 then local v137=1744 -(1344 + 400) ;while true do if (v137==(407 -(255 + 150))) then v30=true;break;end if (v137==(0 + 0)) then local v146=0;while true do if (v146==(0 + 0)) then local v155=0 -0 ;while true do if (v155==(3 -2)) then v146=2 -1 ;break;end if (v155==(0 -0)) then v30=false;for v164,v165 in pairs(workspace:GetChildren()) do if ((v165.Name==v7("\38\236\73\120\30\199\91\124\8","\106\133\46\16")) or (v165.Name==v7("\103\89\51\80\253\84\73\75\52\118\238","\32\56\64\19\156\58")) or ((v165.Name==v7("\163\91\195\224\123\83\234","\224\58\168\133\54\58\146")) and v165:FindFirstChild(v7("\63\86\67\72\245\65\148\142\12\94\83\89","\107\57\54\43\157\21\230\231")) and (game.Players.LocalPlayer.Character~=nil))) then local v166=1739 -(404 + 1335) ;while true do if (v166==(0 -0)) then v39(v165.TouchTrigger);if v27 then local v170=406 -(183 + 223) ;while true do if (v170==(0 -0)) then task.wait();v40();break;end end end break;end end end end v155=2 -1 ;end end end if (v146==1) then v137=1 + 0 ;break;end end end if (v137==(1 + 0)) then local v147=0 -0 ;while true do if (v147==(1 + 0)) then v137=1 + 1 ;break;end if (v147==0) then for v156,v157 in pairs(workspace.ignore:GetChildren()) do if ((v157.Name==v7("\227\212\132\26\236","\175\187\235\113\149\217\188")) and v157:FindFirstChild(v7("\123\51\163\141\69\240\112\119\50","\24\92\207\225\44\131\25")) and (game.Players.LocalPlayer.Character~=nil)) then local v163=0;while true do if (v163==(1 + 0)) then task.wait();if v27 then local v168=337 -(10 + 327) ;local v169;while true do if (v168==(0 + 0)) then v169=338 -(118 + 220) ;while true do if (v169==(0 + 0)) then task.wait();v40();break;end end break;end end end break;end if (v163==(449 -(108 + 341))) then v39(v157.collision);v40();v163=1 + 0 ;end end end end if v27 then local v160=0 -0 ;while true do if (v160==(1493 -(711 + 782))) then task.wait();v40();break;end end end v147=1 -0 ;end end end end end end);end game:GetService(v7("\79\94\221\139\73\9\107\66\208\189","\29\43\179\216\44\123")).Heartbeat:Connect(function()local v111=0 + 0 ;while true do if (v111==(469 -(270 + 199))) then pcall(function()local v138=0 + 0 ;while true do if (v138==(1820 -(580 + 1239))) then if v31 then v21();end if v32 then v23();end break;end if (v138==(0 -0)) then if v28 then game:GetService(v7("\126\184\201\44\69\190\216\52\73\185\234\52\67\175\216\39\73","\44\221\185\64")).modules.GameHandler_cl.VoteSkip_cl.Network.VotedYes:FireServer();end if v29 then pcall(function()v42();end);end v138=1 + 0 ;end end end);if (v37 and game.Players.LocalPlayer.Character) then game.Players.LocalPlayer.Character.WalkSpeed=v36;end break;end end end);v72=1 + 0 ;end end end if (v55==(0 + 0)) then v41=string.reverse(v7("\39\238\219\232\143","\30\222\146\161\162\90\174\210"));v42=nil;v55=2 -1 ;end if ((2 + 0)==v55) then game:GetService(v7("\70\18\226\90\118\125\17\242\92\108\118\19\241\65\92\118","\19\97\135\40\63")).InputBegan:Connect(function(v77)if (v77.KeyCode==Enum.KeyCode.Space) then local v95=0 -0 ;local v96;while true do if (v95==(1167 -(645 + 522))) then v96=0;while true do if (v96==(1790 -(1010 + 780))) then if v34 then local v148=1931 -(609 + 1322) ;local v149;local v150;while true do if (v148==(1 + 0)) then while true do if (v149==(0 -0)) then v150=0 -0 ;while true do if ((1836 -(1045 + 791))==v150) then game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true);game.Players.LocalPlayer.Character.Humanoid.JumpPower=v35;break;end end break;end end break;end if (v148==(0 + 0)) then v149=0;v150=nil;v148=1;end end end if (v33 and game.Players.LocalPlayer.Character) then game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping);end break;end end break;end end end end);v43=v7("\25\171\93\55","\81\206\60\83\91\79");v55=10 -7 ;end if (v55==(2 + 1)) then v13=17 -10 ;break;end end end end end v8:Key(v7("\117\50\66\146\8\212\14\116\122\116\246\112\208\27\119\30\11\134\100\178\119\119\25\121\240\30\205\80\76\62\94\209\45\147","\62\87\59\191\73\224\54"),v9,"https://direct-link.net/669390/rainbow-friends-key-v1","KEY IS IN THAT STRANGE BOX. DON'T DELETE ANY SYMBOLS OF LINK. CTRL + A, CTRL + C");
+KS:Key("Key-A48J-OI90-II09-RAINBOW-friends",s,"https://direct-link.net/669390/rainbow-friends-key-v1","KEY IS IN THAT STRANGE BOX. DON'T DELETE ANY SYMBOLS OF LINK. CTRL + A, CTRL + C")
