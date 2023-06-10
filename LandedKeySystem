@@ -107,6 +107,36 @@ function Library:Key(key,script,link,desc)
 	Description.TextWrapped = true
 	UICorner_5.CornerRadius = UDim.new(0, 4)
 	UICorner_5.Parent = Description
+	local CKB = Instance.new("TextButton")
+	local UICornerwww = Instance.new("UICorner")
+
+	--Properties:
+
+	CKB.Name = "CKB"
+	CKB.Parent = KeySystem
+	CKB.BackgroundColor3 = Color3.fromRGB(101, 108, 97)
+	CKB.Position = UDim2.new(0.068119891, 0, 0.610526323, 0)
+	CKB.Size = UDim2.new(0.416893721, 0, 0.142105266, 0)
+	CKB.Font = Enum.Font.SourceSans
+	CKB.Text = "Attempt to copy key"
+	CKB.TextColor3 = Color3.fromRGB(0, 0, 0)
+	CKB.TextSize = 23.000
+	CKB.TextWrapped = true
+
+	UICornerwww.CornerRadius = UDim.new(0, 4)
+	UICornerwww.Parent = CKB
+	CKB.MouseButton1Click:Connect(function()
+		local clip = setclipboard or toclipboard
+		if clip then
+			setclipboard(LinkBox.Text)
+			toclipboard(LinkBox.Text)
+		else
+			local lt = Description.Text
+			Description.Text = "Unable to copy to clipboard. Error: No function found"
+			task.wait(5)
+			Description.Text = lt
+		end
+	end)
 	local function KFKS_script()
 		local script = Instance.new('LocalScript', Close)
 		script.Parent.MouseButton1Click:Connect(function()
@@ -159,13 +189,8 @@ function Library:Key(key,script,link,desc)
 		LandedKS:Destroy()
 	end
 end
-return Library
---[[
-Example:
-
-local function Open()--what will script do if key was correct
-	print("Key is correct")
-	Library:Destroy()--destroys the gui
+local function got()
+	print("Thankssssssssssss")
+	Library:Destroy()
 end
-Library:Key("123",Open,"roblox.com/badanticheat","hi")--1. key 2. function to execute if key is correct 3. website to key 4. description of the gui
-]]
+Library:Key("kiy",got,"linkee","hi")
