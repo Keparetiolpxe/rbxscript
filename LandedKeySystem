@@ -1,5 +1,5 @@
 local KS = {}
-function KS:KeySystem(keyV,call,LinkV,descriptionV,OtherLinkV,textOnCorrect)
+function KS:Key(keyV,call,LinkV,descriptionV,OtherLinkV,textOnCorrect)
 	local LandedKS = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
 	local DescriptionFrame = Instance.new("Frame")
