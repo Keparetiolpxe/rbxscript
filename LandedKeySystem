@@ -118,7 +118,7 @@ function Library:Key(key,script,link,desc)
 	CKB.Position = UDim2.new(0.068119891, 0, 0.610526323, 0)
 	CKB.Size = UDim2.new(0.416893721, 0, 0.142105266, 0)
 	CKB.Font = Enum.Font.SourceSans
-	CKB.Text = "Attempt to copy key"
+	CKB.Text = "Copy link(not always work)"
 	CKB.TextColor3 = Color3.fromRGB(0, 0, 0)
 	CKB.TextSize = 23.000
 	CKB.TextWrapped = true
