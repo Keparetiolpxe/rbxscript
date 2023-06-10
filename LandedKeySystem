@@ -160,7 +160,7 @@ function KS:Key(keyV,call,LinkV,descriptionV,OtherLinkV,textOnCorrect)
 			Description.Text = textOnCorrect or "Thank you for using our script"
 			task.wait(1)
 			call()
-			LandedKS:Remove()
+			LandedKS:Destroy()
 		end
 	end)
 	CopyButton.MouseButton1Click:Connect(function()
