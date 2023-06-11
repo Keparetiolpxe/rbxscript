@@ -77,7 +77,7 @@ function KS:Key(keyV,call,LinkV,descriptionV,OtherLinkV,textOnCorrect)
 	CopyButton.Position = UDim2.new(0.0500000007, 0, 0.596000016, 0)
 	CopyButton.Size = UDim2.new(0, 219, 0, 29)
 	CopyButton.Font = Enum.Font.SourceSans
-	CopyButton.Text = "Copy Link"
+	CopyButton.Text = "Copy Key Link"
 	CopyButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 	CopyButton.TextSize = 14.000
 	UICorner_2.CornerRadius = UDim.new(0, 5)
