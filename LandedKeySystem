@@ -149,7 +149,7 @@ function KS:Key(keyV,call,LinkV,descriptionV,OtherLinkV,textOnCorrect)
 	OtherCopy.Position = UDim2.new(0.396793306, 0, 0.736495852, 0)
 	OtherCopy.Size = UDim2.new(0, 72, 0, 29)
 	OtherCopy.Font = Enum.Font.SourceSans
-	OtherCopy.Text = "Copy Another Link"
+	OtherCopy.Text = "Copy Discord(NOT KEY)"
 	OtherCopy.TextColor3 = Color3.fromRGB(0, 0, 0)
 	OtherCopy.TextSize = 14.000
 	OtherCopy.TextWrapped = true
