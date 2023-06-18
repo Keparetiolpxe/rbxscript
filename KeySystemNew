@@ -1,0 +1,90 @@
+local KS = {}
+function KS:Key(key,keylink,callback,discord,discordlink,tutorlink)
+    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+    local Window = OrionLib:MakeWindow({Name = "KeySystem", HidePremium = false, SaveConfig = true, ConfigFolder = game:GetService("HttpService"):GenerateGUID()})
+    local Tab = Window:MakeTab({
+        Name = "Key",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    local Section = Tab:AddSection({
+        Name = "System"
+    })
+    Tab:AddButton({
+        Name = "Copy Key Link",
+        Callback = function()
+            if setclipboard or toclipboard then
+                pcall(function()
+                    setclipboard(keylink or "https://workink.net/1kif/lj0v97nz")
+                    toclipboard(keylink or "https://workink.net/1kif/lj0v97nz")
+                end)
+            end
+        end
+    })
+    Tab:AddButton({
+        Name = "NOT KEY! Discord link report any bugs",
+        Callback = function()
+            if setclipboard or toclipboard then
+                pcall(function()
+                    setclipboard(discordlink or "https://discord.gg/Mb7xc9nEsB")
+                    toclipboard(discordlink or "https://discord.gg/Mb7xc9nEsB")
+                end)
+            end
+        end
+    })
+    Tab:AddButton({
+        Name = "Copy Tutorial Link",
+        Callback = function()
+            if setclipboard or toclipboard then
+                pcall(function()
+                    setclipboard(tutorlink or "https://youtu.be/Lz_Wc8xEwnM")
+                    toclipboard(tutorlink or "https://youtu.be/Lz_Wc8xEwnM")
+                end)
+            end
+        end
+    })
+    Tab:AddTextbox({
+        Name = "Link if can't copy",
+        Default = keylink or "https://workink.net/1kif/lj0v97nz",
+        TextDissapear = false,
+        Callback = function() end
+    })
+    Tab:AddTextbox({
+        Name = "Discord if can't copy",
+        Default = discordlink or "https://discord.gg/Mb7xc9nEsB",
+        TextDissapear = false,
+        Callback = function()
+        end
+    })
+    Tab:AddTextbox({
+        Name = "Tutorial link",
+        Default = tutorlink or "https://youtu.be/Lz_Wc8xEwnM",
+        TextDissapear = false,
+        Callback = function() end
+    })
+    local keysel = ""
+    Tab:AddTextbox({
+        Name = "Insert Key",
+        Default = "",
+        TextDissapear = false,
+        Callback = function(v) keysel = v end
+    })
+    Tab:AddButton({
+        Name = "Check Key",
+        Callback = function()
+            if keysel == key then
+                OrionLib:MakeNotification({
+                    Name = "Notification",
+                    Content = "Correct Key",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+                task.wait(3)
+                OrionLib:Destroy()
+                callback()
+            end
+        end
+    })
+    OrionLib:Init()
+end
+return KS
